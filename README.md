@@ -2,7 +2,7 @@
 
 SPICE models for my personal electronics inventory.
 
-SPICE models are mostly formatted for LTSpice.
+SPICE models are mostly formatted/adapted for **LTSpice**.
 
 ## Copyright
 
