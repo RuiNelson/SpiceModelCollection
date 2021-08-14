@@ -1,6 +1,7 @@
-* My Transistors
+* My Field Effect Transistors
 
-* AO3400
+* Alpha and Omega AO3400 N-Channel 30V 5.8A Trench MOSFET
+* http://www.aosmd.com/pdfs/datasheet/ao3400.pdf
 * (C) Alpha and Omega Semi
 *              Drain
 *              | Gate
@@ -21,7 +22,8 @@ DBD S 3    DBD
 
 .ENDS
 
-* AO3401
+* Alpha and Omega AO3401 P-Channel -30V -4.0A Trench MOSFET
+* http://www.aosmd.com/pdfs/datasheet/ao3401.pdf
 * (C) Alpha and Omega Semi
 *              Drain
 *              | Gate
