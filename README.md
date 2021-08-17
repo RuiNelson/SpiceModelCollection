@@ -25,3 +25,5 @@ SPICE models are mostly formatted/adapted for **[LTSpice](https://www.analog.com
 1. MCP6001 model and symbol was done by Microchip Technology Incorporated and modified by [Bordodynov](https://forum.allaboutcircuits.com/members/bordodynov.266980/)
 
 1. TL081 model by Texas Instruments
+
+Others copyright by me.

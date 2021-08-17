@@ -1,0 +1,8 @@
+* My Negative Coeficient Temperature Coefficient Resitors
+
+.subckt MarlinThermistor5 T1 T2 Ctrl
+.param R25=100K
+.param Beta=4267
+.param zeroC=273.15
+R1 T1 T2 R={R25*exp(Beta*(1/(V(Ctrl)+273.15)-1/(300)))}
+.ends
