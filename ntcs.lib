@@ -7,6 +7,5 @@
 .subckt Thermistor100Kbeta4267 T1 T2 Ctrl
 .param R25=100K
 .param Beta=4267
-.param zeroC=273.15
-R1 T1 T2 R={R25*exp(Beta*(1/(V(Ctrl)+273.15)-1/(300)))}
+R1 T1 T2 R={R25*exp(Beta*(1/(V(Ctrl)+273.15)-1/(25+273.15)))}
 .ends
