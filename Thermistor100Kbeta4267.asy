@@ -9,7 +9,7 @@ LINE Normal 24 56 24 8
 LINE Normal 24 8 8 8
 LINE Normal 16 0 16 8
 LINE Normal 16 56 16 64
-TEXT 45 15 Left 0 1V = 1ºC
+TEXT 45 15 Left 0 1V = 1degC
 WINDOW 0 44 35 Left 2
 WINDOW 3 45 55 Left 2
 SYMATTR Prefix X
