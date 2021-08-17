@@ -1,6 +1,10 @@
 * My Negative Coeficient Temperature Coefficient Resitors
 
-.subckt MarlinThermistor5 T1 T2 Ctrl
+* Thermistor commonly used in 3D Printers
+* For Marlin, is thermistor model 5
+* ATC Semitec 104GT-2/104NT-4-R025H42G
+* Ctrl is the temperature input, 1V = 1ºC
+.subckt Thermistor100Kbeta4267 T1 T2 Ctrl
 .param R25=100K
 .param Beta=4267
 .param zeroC=273.15
