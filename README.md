@@ -26,4 +26,6 @@ SPICE models are mostly formatted/adapted for **[LTSpice](https://www.analog.com
 
 1. TL081 model by Texas Instruments
 
+1. RB161MM-20 by Rohm
+
 Others copyright by me.

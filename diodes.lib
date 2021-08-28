@@ -1,0 +1,10 @@
+* My Diodes
+
+*Rohm 20V, 1A, SOD-123FL, Schottky Barrier Diode
+* https://fscdn.rohm.com/en/products/databook/datasheet/discrete/diode/schottky_barrier/rb161mm-20tr-e.pdf
+* (C) Rohm
+
+.SUBCKT RB161MM-20 ANODE CATHODE
+D1 ANODE CATHODE DRB161MM-20
+.MODEL DRB161MM-20 D IS=47.873E-6 N=1.0674 RS=12.756E-3 IKF=.47478 XTI=2 EG=.55 CJO=350.27E-12 M=.60349 VJ=.64083 ISR=18.739E-6 BV=25
+.ENDS
