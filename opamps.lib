@@ -2,7 +2,7 @@
 
 * Microchip MCP6001 1 MHz, Low-Power Op Amp
 * https://www.microchip.com/en-us/product/MCP6002#
-*The Modification from Bordodynov
+* The Modification from Bordodynov
 .SUBCKT MCP6001 1 2 3 4 5
 *               | | | | |
 *               | | | | Output
@@ -38,7 +38,7 @@
 *   REV A: 21-Jun-02, Created model
 *   REV B: 16-Jul-02, Improved output stage
 *   REV C: 03-Jan-03, Added MCP6001
-*   REV D: 19-Aug-06, Added over temperature, improved output stage, 
+*   REV D: 19-Aug-06, Added over temperature, improved output stage,
 *                     fixed overdrive recovery time
 *   REV E: 27-Jul-07, Updated output impedance for better model stability w/cap load
 *
@@ -53,7 +53,7 @@
 *   DC, AC, Transient, and Noise analyses.
 *   Most specs, including: offsets, DC PSRR, DC CMRR, input impedance,
 *     open loop gain, voltage ranges, supply current, ... , etc.
-*   Temperature effects for Ibias, Iquiescent, Iout short circuit 
+*   Temperature effects for Ibias, Iquiescent, Iout short circuit
 *   current, Vsat on both rails, Slew Rate vs. Temp and P.S.
 *
 * Not Supported:
@@ -64,24 +64,24 @@
 *
 * Input Stage
 V10  3 10 -500M
-R10 10 11 6.90K 
-R11 10 12 6.90K 
+R10 10 11 6.90K
+R11 10 12 6.90K
 C11 11 12 0.2p
-C12 1  0 6.00P 
+C12 1  0 6.00P
 E12 71 14 POLY(4) 20 0 21 0 26 0 27 0   1m 20.1 20.1 1 1
-G12 1 0 62 0 1m 
+G12 1 0 62 0 1m
 M12 11 14 15 15 NMI L=2U W=42U
 M14 12  2 15 15 NMI L=2U W=42U
-G14 2 0 62 0 1m 
-C14  2  0 6P 
+G14 2 0 62 0 1m
+C14  2  0 6P
 I15 15  4 50U
 V16 16  4 -300M
-GD16 16 1 TABLE {V(16,1)} ((-100,-1p)(0,0)(1m,1n)(2m,1m)(3m,1)) 
+GD16 16 1 TABLE {V(16,1)} ((-100,-1p)(0,0)(1m,1n)(2m,1m)(3m,1))
 V13  3 13 -300M
-GD13 2 13 TABLE {V(2,13)} ((-100,-1p)(0,0)(1m,1n)(2m,1m)(3m,1)) 
-R70 1 0 20.6T  
-R71 2 0 20.6T 
-R72 1 2 20T 
+GD13 2 13 TABLE {V(2,13)} ((-100,-1p)(0,0)(1m,1n)(2m,1m)(3m,1))
+R70 1 0 20.6T
+R71 2 0 20.6T
+R72 1 2 20T
 I80 1 2 0.5p
 *
 * Noise, PSRR, and CMRR
@@ -111,7 +111,7 @@ R34  34 0 1K
 C34  34 0 74U
 G37  0 37 34 0 1m
 R37  37 0 1K
-C37  37 0 41.6P 
+C37  37 0 41.6P
 G38  0 38 37 0 1m
 R38  39 0 1K
 L38  38 39 100U
@@ -119,7 +119,7 @@ E38  35 0 38 0 1
 G35 33 0 TABLE {V(35,3)} ((-1,-1n)(0,0)(16,1n))(16.1,1))
 G36 33 0 TABLE {V(35,4)} ((-16.1,-1)((-16,-1n)(0,0)(1,1n))
 *
-* Output Stage 
+* Output Stage
 cr80 50 0 100f     ;my
 BG50 0 50 i=V(57,96)*2 rpar=1k ;my
 R58 57  96 0.5
@@ -139,38 +139,38 @@ BD52 52 0 v=-uramp(v(50)) ;my
 G53  3  0 POLY(1) 51 0  -49U 1M
 G54  0  4 POLY(1) 52 0  -49U -1M
 *
-* Current Limit 
-G99 96 5 99 0 1 
-R98 0 98 1 TC=-2.8M,2.63U 
+* Current Limit
+G99 96 5 99 0 1
+R98 0 98 1 TC=-2.8M,2.63U
 G97 0 98 TABLE { V(96,5) } ((-11.0,-10.0M)(-1.00M,-9.9M)(0,0)(1.00M,9.9M)
-+ (11.0,10.0M)) 
-E97 99 0 VALUE { V(98)*(V(3,4)*359M + 310M)} 
-D98 4 5 DESD 
-D99 5 3 DESD 
++ (11.0,10.0M))
+E97 99 0 VALUE { V(98)*(V(3,4)*359M + 310M)}
+D98 4 5 DESD
+D99 5 3 DESD
 *
 * Temperature / Voltage Sensitive IQuiscent
 R61 0 61 100 TC 3.11M 4.51U
 G61 3 4 61 0 1
-G60 0 61 TABLE {V(3, 4)} 
+G60 0 61 TABLE {V(3, 4)}
 + ((0,0)(900M,0.0106U)(1.00,0.20U)(1.3,0.63U)
 + (1.5,0.66U)(1.6,1.06U)(5.5,1.10U))
 *
-* Temp Sensitive offset voltage 
-I73 0 70 DC 1uA 
-R74 0 70 1 TC=2 
-E75 1 71 70 0 1 
+* Temp Sensitive offset voltage
+I73 0 70 DC 1uA
+R74 0 70 1 TC=2
+E75 1 71 70 0 1
 *
-* Temp Sensistive IBias 
-I62 0 62 DC 1uA 
-R62 0 62 REXP 58.2u 
+* Temp Sensistive IBias
+I62 0 62 DC 1uA
+R62 0 62 REXP 58.2u
 * Voltage on R62 used for G12, G14 in input stage
 *
 * Models
 .MODEL NMI NMOS
-.MODEL DESD  D   N=1 IS=1.00E-15 
-.MODEL DL  D   N=1 IS=1F 
+.MODEL DESD  D   N=1 IS=1.00E-15
+.MODEL DL  D   N=1 IS=1F
 .MODEL DN1 D   IS=1P KF=146E-18 AF=1
-.MODEL REXP RES TCE=10.1 
+.MODEL REXP RES TCE=10.1
 .ENDS MCP6001
 
 
@@ -218,3 +218,273 @@ R62 0 62 REXP 58.2u
 .MODEL DX D(IS=800.0E-18)
 .MODEL JX PJF(IS=15.00E-12 BETA=270.1E-6 VTO=-1)
 .ENDS
+
+
+
+
+
+* https://www.analog.com/en/products/ad8065.html
+*AD8065 Macro-model
+*Function:Amplifier
+*
+*Revision History:
+*Rev.2.1 Jun 2015-ZZ
+*Copyright 2015 by Analog Devices
+*
+*Refer to http://www.analog.com/Analog_Root/static/techSupport/designTools/spicemodels/license
+*for License Statement. Use of this model indicates your acceptance
+*of the terms and provisions in the License Staement.
+*
+*Tested on MultSIm, SiMetrix(NGSpice), PSpice
+*
+*Not modeled: Distortion, PSRR, Overload Recovery,
+*             Shutdown Turn On/Turn Off time
+*
+*Parameters modeled include:
+*   Vos, Ibias, Input CM limits and Typ output voltge swing over full supply range,
+*   Open Loop Gain & Phase, Slew Rate, Output current limits, Voltage & Current Noise over temp,
+*   Capacitive load drive, Quiescent and dynamic supply currents,
+*   Shut Down pin functionality where applicable,
+*   Single supply & offset supply functionality.
+*
+*Node Assignments
+*               Non-Inverting Input
+*               |   Inverting Input
+*               |   |   Positive supply
+*               |   |   |   Negative supply
+*               |   |   |   |   Output
+*               |   |   |   |   |
+.Subckt AD8065 100 101 102 103 104
+*
+***Power Supplies***
+Rz1	102	1020	Rideal	1e-6
+Rz2	103	1030	Rideal	1e-6
+Ibias	1020	1030	dc	0.64e-3
+DzPS	98	1020	diode
+Iquies	1020	98	dc	5.76e-3
+S1	98	1030	106	113	Switch
+R1	1020	99	Rideal	1e7
+R2	99	1030	Rideal	1e7
+e1	111	110	1020	110	1
+e2	110	112	110	1030	1
+e3	110	0	99	0	1
+*
+*
+***Inputs***
+S2	1	100	106	113	Switch
+S3	9	101	106	113	Switch
+VOS	1	2	dc	400e-6
+IbiasP	110	2	dc	2e-12
+IbiasN	110	9	dc	2e-12
+RinCMP	110	2	Rideal	10000e6
+RinCMN	9	110	Rideal	10000e6
+CinCMP	110	2	1.1e-12
+CinCMN	9	110	1.1e-12
+IOS	9	2	1e-12
+RinDiff	9	2	Rideal	10000e3
+CinDiff	9	2	4e-12
+*
+*
+***Non-Inverting Input with Clamp***
+g1	3	110	110	2	0.001
+RInP	3	110	Rideal	1e3
+RX1	40	3	Rideal	0.001
+DInP	40	41	diode
+DInN	42	40	diode
+VinP	111	41	dc	3.06
+VinN	42	112	dc	0.46
+*
+*
+***Vnoise***
+hVn	6	5	Vmeas1	707.10678
+Vmeas1	20	110	DC	0
+Vvn	21	110	dc	0.65
+Dvn	21	20	DVnoisy
+hVn1	6	7	Vmeas2	707.10678
+Vmeas2	22	110	dc	0
+Vvn1	23	110	dc	0.65
+Dvn1	23	22	DVnoisy
+*
+*
+***Inoise***
+FnIN	9	110	Vmeas3	0.7071068
+Vmeas3	51	110	dc	0
+VnIN	50	110	dc	0.65
+DnIN	50	51	DINnoisy
+FnIN1	110	9	Vmeas4	0.7071068
+Vmeas4	53	110	dc	0
+VnIN1	52	110	dc	0.65
+DnIN1	52	53	DINnoisy
+*
+FnIP	2	110	Vmeas5	0.7071068
+Vmeas5	31	110	dc	0
+VnIP	30	110	dc	0.65
+DnIP	30	31	DIPnoisy
+FnIP1	110	2	Vmeas6	0.7071068
+Vmeas6	33	110	dc	0
+VnIP1	32	110	dc	0.65
+DnIP1	32	33	DIPnoisy
+*
+*
+***CMRR***
+RcmrrP	3	10	Rideal	1e12
+RcmrrN	10	9	Rideal	1e12
+g10	11	110	10	110	-1e-10
+Lcmrr	11	12	1e-12
+Rcmrr	12	110	Rideal	1e3
+e4	5	3	11	110	1
+*
+*
+***Power Down***
+VPD	111	80	dc	2
+VPD1	81	0	dc	1.5
+RPD	111	106	Rideal	0.286e6
+ePD	80	113	82	0	1
+RDP1	82	0	Rideal	1e3
+CPD	82	0	1e-10
+S5	81	82	83	113	Switch
+CDP1	83	0	1e-12
+RPD2	106	83	1e6
+*
+*
+***Feedback Pin***
+*RF	105	104	Rideal	0.001
+*
+*
+***VFB Stage***
+g200	200	110	7	9	1
+R200	200	110	Rideal	250
+DzSlewP	201	200	DzSlewP
+DzSlewN	201	110	DzSlewN
+*
+*
+***Dominant Pole at 150 Hz***
+g210	210	110	200	110	1.684e-6
+R210	210	110	Rideal	1061.03e6
+C210	210	110	1e-012
+*
+*
+***Output Voltage Clamp-1***
+RX2	60	210	Rideal	0.001
+DzVoutP	61	60	DzVoutP
+DzVoutN	60	62	DzVoutN
+DVoutP	61	63	diode
+DVoutN	64	62	diode
+VoutP	65	63	dc	5.176
+VoutN	64	66	dc	5.072
+e60	65	110	111	110	1.038
+e61	66	110	112	110	1.038
+*
+*
+***Pole at 90MHz***
+g220	220	110	210	110	0.001
+R220	220	110	Rideal	1000
+C220	220	110	1.7684e-12
+*
+***Pole at 1400MHz***
+g230	230	110	220	110	0.001
+R230	230	110	Rideal	1000
+C230	230	110	0.1137e-12
+*
+***Pole at 1800MHz***
+g240	240	110	230	110	0.001
+R240	240	110	Rideal	1000
+C240	240	110	0.0884e-12
+*
+***Zero at 1000MHz***
+g245	245	110	240	110	0.001
+R245	245	246	Rideal	1000
+L245	246	110	0.1592e-6
+*
+***Buffer***
+g250	250	110	245	110	0.001
+R250	250	110	Rideal	1000
+*
+***Buffer***
+g255	255	110	250	110	0.001
+R255	255	110	Rideal	1000
+*
+***Buffer***
+g260	260	110	255	110	0.001
+R260	260	110	Rideal	1000
+*
+***Buffer***
+g265	265	110	260	110	0.001
+R265	265	110	Rideal	1000
+*
+***Buffer***
+g270	270	110	265	110	0.001
+R270	270	110	Rideal	1000
+*
+***Buffer***
+e280	280	110	270	110	1
+R280	280	285	Rideal	10
+*
+***Peak: f=210MHz, Zeta=0.999999999999999, Gain=2.3dB***
+e290	290	110	285	110	1
+R290	290	292	Rideal	10
+L290	290	291	3.789e-9
+C290	291	292	151.576e-12
+R291	292	110	Rideal	32.985
+e295	295	110	292	110	1.3032
+*
+*
+***Output Stage***
+g300	300	110	295	110	0.001
+R300	300	110	Rideal	1000
+e301	301	110	300	110	1
+Rout	302	303	Rideal	 4.9
+Lout	303	310	 7e-9
+Cout	310	110	 46e-12
+*
+*
+***Output Current Limit***
+H1	301	304	Vsense1	100
+Vsense1	301	302	dc	0
+VIoutP	305	304	dc	8.336
+VIoutN	304	306	dc	8.336
+DIoutP	307	305	diode
+DIoutN	306	307	diode
+Rx3	307	300	Rideal	0.001
+*
+*
+***Output Clamp-2***
+VoutP1	111	73	dc	0.735
+VoutN1	74	112	dc	0.715
+DVoutP1	75	73	diode
+DVoutN1	74	75	diode
+RX4	75	310	Rideal	0.001
+*
+*
+***Supply Currents***
+FIoVcc	314	110	Vmeas8	1
+Vmeas8	310	311	dc	0
+R314	110	314	Rideal	1e9
+DzOVcc	110	314	diode
+DOVcc	102	314	diode
+RX5	311	312	Rideal	0.001
+FIoVee	315	110	Vmeas9	1
+Vmeas9	312	313	dc	0
+R315	315	110	Rideal	1e9
+DzOVee	315	110	diode
+DOVee	315	103	diode
+*
+*
+***Output Switch***
+S4	104	313	106	113	Switch
+*
+*
+*** Common Models ***
+.model	diode	d(bv=100)
+.model	Switch	vswitch(Von=1.505,Voff=1.495,ron=0.001,roff=1e6)
+.model	DzVoutP	D(BV=4.3)
+.model	DzVoutN	D(BV=4.3)
+.model	DzSlewP	D(BV=107.367)
+.model	DzSlewN	D(BV=107.367)
+.model	DVnoisy	D(IS=1.41e-15 KF=1.05e-15)
+.model	DINnoisy	D(IS=3.81e-23 KF=0.00e0)
+.model	DIPnoisy	D(IS=3.81e-23 KF=0.00e0)
+.model	Rideal	res(T_ABS=-273)
+*
+.ends
+
