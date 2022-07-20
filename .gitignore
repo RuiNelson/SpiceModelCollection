@@ -1,2 +1,3 @@
 *.log
 Draft*
+.DS_Store
